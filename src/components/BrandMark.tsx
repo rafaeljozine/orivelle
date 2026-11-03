@@ -2,12 +2,10 @@ import { Link } from 'react-router'
 
 type BrandMarkProps = { className?: string; linkTo?: string }
 
-type BrandMarkVariantProps = BrandMarkProps & { light?: boolean }
-
-export function BrandMark({ className = '', linkTo = '/', light = false }: BrandMarkVariantProps) {
+export function BrandMark({ className = '', linkTo = '/' }: BrandMarkProps) {
   return (
-    <Link to={linkTo} className={`brand brand-image-link ${className}`} aria-label="Orivelle Convites Digitais, início">
-      <img className="brand-image" src={light ? '/assets/orivelle-logo-light.png' : '/assets/orivelle-logo.png'} alt="Orivelle Convites Digitais" />
+    <Link to={linkTo} className={`brand brand-image-link ${className}`} aria-label="Ourivelle Convites Digitais, início">
+      <img className="brand-image" src="/assets/ourivelle-logo.png" alt="Ourivelle Convites Digitais" />
     </Link>
   )
 }

@@ -399,7 +399,16 @@ p { text-wrap: pretty; }
 .page-loading { font-size: 13px; }
 
 /* Linguagem visual oceano: superfícies claras, contornos e profundidade suave. */
-.site-header { border-bottom: 1px solid rgb(126 178 197 / 45%); background: rgb(244 249 252 / 94%); backdrop-filter: blur(14px); }
+.site-header {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
 .brand-mark { border-width: 2px; background: var(--white); }
 .main-nav a, .nav-signout { position: relative; }
 .main-nav a.active::after { position: absolute; right: 0; bottom: 2px; left: 0; height: 2px; border-radius: 999px; background: var(--rose); content: ''; }
@@ -419,8 +428,17 @@ p { text-wrap: pretty; }
 /* Página inicial Orivelle inspirada na referência fornecida. */
 .brand-image-link { display: flex; width: 190px; height: 82px; align-items: center; overflow: visible; }
 .brand-image { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 5px rgb(1 35 74 / 16%)); }
+.site-header-home .brand-image, .footer-brand .brand-image { filter: drop-shadow(0 0 5px rgb(255 255 255 / 42%)) drop-shadow(0 2px 7px rgb(1 24 65 / 28%)); }
 .site-header { min-height: 92px; grid-template-columns: 210px 1fr auto; gap: 28px; }
-.site-header-home { position: absolute; z-index: 40; top: 0; right: 0; left: 0; border: 0; background: transparent; backdrop-filter: none; }
+.site-header-home {
+  position: absolute;
+  z-index: 40;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: auto;
+  margin: 0;
+}
 .site-header-home .main-nav a, .site-header-home .nav-signout { color: #fff; text-shadow: 0 1px 8px rgb(0 45 94 / 40%); }
 .site-header-home .main-nav a:hover, .site-header-home .main-nav a.active { color: #d9efff; }
 .header-actions { display: flex; align-items: center; justify-self: end; gap: 18px; }
@@ -428,8 +446,8 @@ p { text-wrap: pretty; }
 .header-actions .nav-signout { min-height: 46px; border: 1px solid #76b8e6; border-radius: 13px; padding: 0 18px; }
 .header-cta { border-color: var(--green); background: var(--green); color: #fff; box-shadow: 0 9px 25px rgb(5 90 167 / 22%); }
 .site-header-home .header-login { border-color: rgb(255 255 255 / 88%); color: #fff; }
-.site-header-home .header-cta { border-color: #fff; background: #fff; color: #06498e; box-shadow: 0 9px 25px rgb(229 247 255 / 38%); }
-.site-header-home .menu-toggle { border-color: rgb(255 255 255 / 72%); color: #fff; }
+.site-header-home .header-cta { border-color: #fff; background: #fff; color: #06498e; box-shadow: 0 9px 25px rgb(229 247 255 / 24%); }
+.site-header-home .menu-toggle { border-color: rgb(255 255 255 / 72%); background: transparent; color: #fff; }
 
 .reference-hero { width: 100%; min-height: 640px; height: 640px; max-height: none; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
 .reference-hero .hero-image { object-position: center; }
@@ -482,9 +500,17 @@ p { text-wrap: pretty; }
 .invitation-ornament span:last-child { background: linear-gradient(90deg, #d9a13d, transparent); }
 .invitation-ornament svg { flex: 0 0 auto; stroke-width: 1.7; }
 .invitation-showcase-copy p { max-width: 620px; margin: 0 auto 27px; color: #17466e; font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1.55; }
-.invitation-demo-button { min-width: 285px; min-height: 54px; justify-content: center; gap: 24px; border: 1px solid #d89a2d; border-radius: 999px; background: #073f76; color: #fff; font-family: var(--serif); font-size: 18px; font-weight: 500; box-shadow: 0 12px 25px rgb(7 63 118 / 17%); }
-.invitation-demo-button:hover { border-color: #f1be5a; background: #095292; color: #fff; transform: translateY(-2px); }
-.invitation-demo-button svg { color: #edb344; }
+.invitation-demo-button { position: relative; min-width: 285px; min-height: 54px; justify-content: center; gap: 24px; overflow: hidden; border: 0; border-radius: 999px; background: linear-gradient(115deg, #d6a84b, #45b7e8); color: #fff; font-family: var(--serif); font-size: 18px; font-weight: 500; box-shadow: -9px 9px 24px rgb(214 168 75 / 22%), 9px 9px 24px rgb(69 183 232 / 25%), inset 0 1px 0 rgb(255 225 157 / 78%), inset 0 -1px 0 rgb(148 226 255 / 68%); }
+.invitation-demo-button::before { position: absolute; top: -55%; left: -24%; width: 10%; height: 210%; background: linear-gradient(90deg, transparent, rgb(255 229 164 / 72%), rgb(157 229 255 / 76%), transparent); content: ''; pointer-events: none; transform: rotate(18deg); animation: demo-button-shine 3.2s ease-in-out infinite; }
+.invitation-demo-button::after { display: none; }
+.invitation-demo-button:hover { background: linear-gradient(295deg, #d6a84b, #45b7e8); color: #fff; box-shadow: -11px 12px 30px rgb(214 168 75 / 30%), 11px 12px 30px rgb(69 183 232 / 34%), inset 0 1px 0 rgb(255 225 157 / 88%), inset 0 -1px 0 rgb(148 226 255 / 78%); transform: translateY(-2px); }
+.invitation-demo-button svg { color: #fff; }
+
+@keyframes demo-button-shine {
+  0%, 55% { left: -24%; opacity: 0; }
+  65% { opacity: 0.9; }
+  82%, 100% { left: 120%; opacity: 0; }
+}
 
 @keyframes hero-reveal { from { transform: scale(1.025); opacity: 0.8; } to { transform: scale(1); opacity: 1; } }
 @keyframes nudge-down { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
@@ -517,9 +543,9 @@ p { text-wrap: pretty; }
   .header-cta { min-height: 37px; gap: 5px; padding: 0 9px; font-size: 9px; }
   .header-cta svg { width: 13px; }
   .menu-toggle { display: grid; width: 37px; height: 37px; place-items: center; border: 1px solid var(--line); background: transparent; color: var(--ink); }
-  .main-nav { position: absolute; top: 65px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid var(--line); padding: 8px 19px 15px; background: #f4f9fc; box-shadow: 0 16px 28px rgb(5 65 88 / 14%); }
+  .main-nav { position: absolute; top: 65px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid rgb(255 255 255 / 20%); padding: 8px 19px 15px; background: rgb(3 48 112 / 97%); box-shadow: 0 16px 28px rgb(0 25 71 / 28%); }
   .main-nav.is-open { display: flex; }
-  .main-nav a, .nav-signout { border-bottom: 1px solid #d7e7ee; padding: 12px 4px; text-align: left; }
+  .main-nav a, .nav-signout { border-bottom: 1px solid rgb(255 255 255 / 16%); padding: 12px 4px; color: #fff; text-align: left; }
   .hero { width: calc(100% - 20px); min-height: 570px; height: 76svh; max-height: 720px; align-items: center; border-radius: 17px; }
   .hero-image { object-position: 59% center; }
   .hero-shade { background: linear-gradient(90deg, rgb(3 42 62 / 84%), rgb(5 83 108 / 44%) 78%), linear-gradient(0deg, rgb(3 38 56 / 34%), transparent 54%); }
@@ -736,3 +762,4 @@ p { text-wrap: pretty; }
   .invitation-showcase-copy p { font-size: 14px; line-height: 1.6; }
   .invitation-demo-button { min-width: min(100%, 280px); min-height: 50px; font-size: 16px; }
 }
+

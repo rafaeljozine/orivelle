@@ -23,7 +23,7 @@ export function PublicLayout() {
     <>
       <a className="skip-link" href="#main-content">Saltar para o conteúdo</a>
       <header className={`site-header ${isHome ? 'site-header-home' : ''}`}>
-        <BrandMark light={isHome} />
+        <BrandMark />
         <nav id="main-navigation" className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Navegação principal">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to} end={item.to === '/'} onClick={() => setMenuOpen(false)}>{item.label}</NavLink>
@@ -41,7 +41,7 @@ export function PublicLayout() {
       <footer className="site-footer">
         <div className="footer-main">
           <div className="footer-brand">
-            <BrandMark light />
+            <BrandMark />
             <p>Convites digitais personalizados,<br />criados em Moçambique com cuidado.</p>
           </div>
           <div className="footer-links"><span className="footer-label">Explore</span><Link to="/modelos">Modelos</Link><Link to="/como-funciona">Como funciona</Link><Link to="/precos">Preços</Link></div>
