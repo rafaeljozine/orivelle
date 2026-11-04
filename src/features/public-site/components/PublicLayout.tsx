@@ -1,5 +1,5 @@
 import { Menu, MoveUpRight, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { signOut } from '../../auth/services/auth-service'
@@ -15,14 +15,22 @@ const navItems = [
 
 export function PublicLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const { user } = useAuth()
   const { pathname } = useLocation()
   const isHome = pathname === '/'
 
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 24)
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => window.removeEventListener('scroll', updateHeader)
+  }, [])
+
   return (
     <>
       <a className="skip-link" href="#main-content">Saltar para o conteúdo</a>
-      <header className={`site-header ${isHome ? 'site-header-home' : ''}`}>
+      <header className={`site-header ${isHome ? 'site-header-home' : ''} ${isScrolled ? 'is-scrolled' : ''}`}>
         <BrandMark />
         <nav id="main-navigation" className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Navegação principal">
           {navItems.map((item) => (

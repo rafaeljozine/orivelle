@@ -2,7 +2,6 @@ import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import { getTemplates } from '../../services/catalog-service'
-import { DemoNotice } from '../../components/DemoNotice'
 import { TemplatePreviewImage } from '../../components/TemplatePreviewImage'
 
 type CatalogHighlightsProps = { limit?: number; variant?: 'default' | 'showcase' }
@@ -16,7 +15,6 @@ export function CatalogHighlights({ limit = 3, variant = 'default' }: CatalogHig
 
   return (
     <>
-      {data?.demo && variant === 'default' && <DemoNotice />}
       <div className={`section-wrap template-grid ${variant === 'showcase' ? 'template-grid-showcase' : ''}`}>
         {templates.map((template, index) => (
           <Link className={`template-card template-card-${index + 1}`} to={`/modelos/${template.slug}`} key={template.id}>

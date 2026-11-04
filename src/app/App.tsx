@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { MotionConfig } from 'motion/react'
 import { BrowserRouter } from 'react-router'
 import { useState } from 'react'
 import { AuthProvider } from '../features/auth/hooks/AuthProvider'
@@ -12,9 +13,11 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
+        <MotionConfig reducedMotion="user">
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </MotionConfig>
       </AuthProvider>
     </QueryClientProvider>
   )

@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
-import { DemoNotice } from '../../public-site/components/DemoNotice'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { getTemplates } from '../../public-site/services/catalog-service'
 import { orderSchema, type OrderFormInput, type OrderFormValues } from '../schemas/order-schema'
@@ -43,7 +42,6 @@ export function NewOrderPage() {
       <div className="order-intro"><span className="eyebrow">Um bom começo</span><h1>Conte-nos sobre<br /><em>a vossa celebração.</em></h1><p>Partilhe alguns detalhes. A nossa equipa entrará em contacto para conversar sobre as próximas etapas.</p><div className="order-assurance"><Check size={16} /><span>O seu pedido fica associado à sua conta e só é visível para si e para a equipa autorizada.</span></div></div>
       <section className="order-form-panel">
         <div className="form-panel-heading"><span className="form-panel-icon"><ClipboardList size={18} /></span><div><span className="eyebrow">Novo pedido</span><h2>Detalhes da celebração</h2></div></div>
-        {catalog?.demo && <DemoNotice />}
         {errorMessage && <div className="error-message" role="alert">{errorMessage}</div>}
         <form className="order-form" onSubmit={handleSubmit(onSubmit)} noValidate>
           <label className="field-label">Nome da celebração<input placeholder="Ex.: Casamento de Ana e Paulo" {...register('eventName')} />{errors.eventName && <span className="field-error">{errors.eventName.message}</span>}</label>

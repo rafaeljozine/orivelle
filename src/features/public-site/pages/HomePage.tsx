@@ -1,7 +1,14 @@
-import { ArrowRight, Clock3, Feather, Heart, Smartphone } from 'lucide-react'
+import { Clock3, Feather, Smartphone } from 'lucide-react'
 import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import { CatalogHighlights } from './parts/CatalogHighlights'
+import { HomeFaqSection } from './parts/HomeFaqSection'
+import { HomeFinalCta } from './parts/HomeFinalCta'
+import { HomeHowItWorks } from './parts/HomeHowItWorks'
+import { HomePricingSection } from './parts/HomePricingSection'
+import { InteractiveInvitationSection } from './parts/InteractiveInvitationSection'
+import { InvitationStorySection } from './parts/InvitationStorySection'
+import { OccasionGallery } from './parts/OccasionGallery'
 
 const heroBenefits = [
   { label: 'Personalizado', icon: Feather },
@@ -15,7 +22,7 @@ export function HomePage() {
   return (
     <>
       <section className="hero reference-hero" aria-labelledby="hero-title">
-        <img className="hero-image" src="/assets/orivelle-hero.png" alt="Flores azuis e brancas, alianças douradas e um convite num envelope azul" fetchPriority="high" />
+        <img className="hero-image" src="/assets/orivelle-hero.png" alt="Flores azuis e brancas, alianças douradas e um convite num envelope azul" width={1672} height={941} fetchPriority="high" />
         <div className="hero-shade" />
         <motion.div className="hero-content" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }}>
           <span className="reference-kicker"><span /> Convites digitais personalizados <span /></span>
@@ -42,19 +49,13 @@ export function HomePage() {
         <CatalogHighlights limit={5} variant="showcase" />
       </section>
 
-      <section className="invitation-showcase" aria-labelledby="invitation-showcase-title">
-        <motion.div className="invitation-showcase-visual" initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.65, ease: 'easeOut' }}>
-          <span className="invitation-glow" aria-hidden="true" />
-          <img src="/assets/orivelle-phone-invitation-real.png" alt="Telemóvel com convite de casamento de Jozine e Verónica, rodeado por lírios brancos e detalhes dourados" loading="lazy" />
-        </motion.div>
-        <motion.div className="invitation-showcase-copy" initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.65, delay: 0.08, ease: 'easeOut' }}>
-          <span className="invitation-eyebrow">Convites digitais exclusivos</span>
-          <h2 id="invitation-showcase-title">A arte de convidar<br />começa nos detalhes.</h2>
-          <div className="invitation-ornament" aria-hidden="true"><span /><Heart size={26} /><span /></div>
-          <p>Mais do que um simples convite, criamos experiências digitais elegantes, interativas e personalizadas, que refletem a essência do seu momento especial e encantam os seus convidados.</p>
-          <Link className="button invitation-demo-button" to="/modelos/casamento">Ver Demonstração <ArrowRight size={20} /></Link>
-        </motion.div>
-      </section>
+      <InvitationStorySection />
+      <InteractiveInvitationSection />
+      <HomeHowItWorks />
+      <OccasionGallery />
+      <HomePricingSection />
+      <HomeFaqSection />
+      <HomeFinalCta />
     </>
   )
 }
