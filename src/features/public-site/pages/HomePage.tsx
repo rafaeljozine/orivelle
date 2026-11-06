@@ -22,7 +22,10 @@ export function HomePage() {
   return (
     <>
       <section className="hero reference-hero" aria-labelledby="hero-title">
-        <img className="hero-image" src="/assets/orivelle-hero.png" alt="Flores azuis e brancas, alianças douradas e um convite num envelope azul" width={1672} height={941} fetchPriority="high" />
+        <picture>
+          <source media="(max-width: 768px)" srcSet="/assets/orivelle-hero-roses-mobile.png" width={1024} height={1536} />
+          <img className="hero-image" src="/assets/orivelle-hero-roses.png" alt="Rosas azuis e brancas, alianças douradas e um convite num envelope azul" width={1672} height={941} fetchPriority="high" />
+        </picture>
         <div className="hero-shade" />
         <motion.div className="hero-content" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }}>
           <span className="reference-kicker"><span /> Convites digitais personalizados <span /></span>
